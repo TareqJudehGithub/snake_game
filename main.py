@@ -1,50 +1,23 @@
-from turtle import Turtle, Screen
+from turtle import Screen
+from snake import Snake
 from time import sleep
 
 screen = Screen()
 screen.title("Snake Game")
 screen.setup(width=600, height=600)
 screen.bgcolor("black")
-# Turn animation off:
+# Turn off tracer (animation while turtle is moving):
 screen.tracer(0)
 
-
-# Creating a starting position for the snake:
-start_positions = [(0, 0), (-20, 0), (-40, 0)]
-
-segments = []
-
-# Creating a snake body:
-for position in start_positions:
-    new_segment = Turtle("square")
-    new_segment.color("white")
-    new_segment.penup()
-    new_segment.goto(position)
-    segments.append(new_segment)
-
-screen.update()
+snake = Snake()
 
 game_on = True
 while game_on:
+    # refresh the screen each time, and after 0.2 delay:
     screen.update()
-    sleep(0.1)
+    sleep(0.2)
 
-    # Last to first:
-    for seg_num in range(len(segments) - 1, 0, - 1):
-        new_x = segments[seg_num - 1].xcor()
-        new_y = segments[seg_num - 1].ycor()
-        segments[seg_num].goto(new_x, new_y)
-    segments[0].forward(20)
-    segments[0].right(90)
-
-
-
-
-
-
-
-
-
+    snake.move()
 
 
 screen.exitonclick()

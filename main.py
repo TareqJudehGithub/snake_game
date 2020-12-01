@@ -1,6 +1,7 @@
-from turtle import Screen
-from snake import Snake
+from turtle import Screen, distance
 from time import sleep
+from snake import Snake
+from food import Food
 
 screen = Screen()
 screen.title("Snake Game")
@@ -11,6 +12,7 @@ screen.tracer(0)
 
 # Instantiating obj snake from class Snake():
 snake = Snake()
+food = Food()
 
 # Key listening events:
 screen.listen()
@@ -25,10 +27,11 @@ while game_on:
     # refresh the screen each time, and after 0.2 delay:
     screen.update()
     sleep(0.1)
-
     snake.move()
 
-
-
+    # Detect collision with food:
+    # Distance from snake head to the food:
+    if snake.head.distance(food) < 15:
+        food.refresh()
 screen.exitonclick()
 

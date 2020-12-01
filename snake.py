@@ -6,6 +6,7 @@ DOWN = 270
 RIGHT = 0
 LEFT = 180
 
+
 class Snake:
     # Creating a starting position for the snake:
     def __init__(self):

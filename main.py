@@ -2,6 +2,7 @@ from turtle import Screen, distance
 from time import sleep
 from snake import Snake
 from food import Food
+from scoreboard import Scoreboard
 
 screen = Screen()
 screen.title("Snake Game")
@@ -10,9 +11,10 @@ screen.bgcolor("black")
 # Turn off tracer (animation while turtle is moving):
 screen.tracer(0)
 
-# Instantiating obj snake from class Snake():
+# Instances:
 snake = Snake()
 food = Food()
+score = Scoreboard()
 
 # Key listening events:
 screen.listen()
@@ -33,5 +35,7 @@ while game_on:
     # Distance from snake head to the food:
     if snake.head.distance(food) < 15:
         food.refresh()
+        score.increase_score()
+
 screen.exitonclick()
 
